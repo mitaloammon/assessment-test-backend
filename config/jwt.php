@@ -285,6 +285,7 @@ return [
 
         'auth' => Tymon\JWTAuth\Providers\Auth\Illuminate::class,
 
+
         /*
         |--------------------------------------------------------------------------
         | Storage Provider

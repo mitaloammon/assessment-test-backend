@@ -7,14 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\StoreuserRequest;
+use App\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class AuthController extends Controller
 {
+    public function index()
+    {
+        return User::all();
+    }
+
     public function login(StoreuserRequest $request)
     {
-        $credentials = $request->only(['email', 'password']);
+        $credentials = $request->only(['email', 'password', 'name']);
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -28,6 +34,7 @@ class AuthController extends Controller
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }
+
 
     public function logout()
     {
